@@ -6,3 +6,4 @@ xgboost
 nltk
 wordcloud
 gunicorn
+gevent
