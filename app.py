@@ -4,6 +4,7 @@ import numpy as np
 import joblib
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from xgboost import XGBClassifier
+import nltk
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer, WordNetLemmatizer
 from flask import Flask, render_template, url_for, request
