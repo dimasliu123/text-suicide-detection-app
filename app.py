@@ -8,6 +8,7 @@ import nltk
 from nltk.stem import SnowballStemmer, WordNetLemmatizer
 from flask import Flask, render_template, url_for, request
 nltk.download('stopwords')
+nltk.download('omw-1.4')
 nltk.download('stem')
 nltk.download('wordnet')
 
