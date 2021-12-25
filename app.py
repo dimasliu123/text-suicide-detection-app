@@ -7,7 +7,8 @@ from xgboost import XGBClassifier
 import nltk
 from nltk.stem import SnowballStemmer, WordNetLemmatizer
 from flask import Flask, render_template, url_for, request
-
+nltk.download('stopwords')
+nltk.download('stem')
 app = Flask(__name__)
 
 vectorizer = joblib.load(open('model/vectorize.pkl', 'rb'))
