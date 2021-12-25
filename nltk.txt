@@ -1,6 +1,2 @@
-english
 wordnet
-pros_cons
-reuters
-stopwords
 stemmers

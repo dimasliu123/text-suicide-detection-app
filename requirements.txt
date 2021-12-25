@@ -4,6 +4,5 @@ joblib
 sklearn
 xgboost
 nltk
-wordcloud
 gunicorn
 gevent

@@ -5,7 +5,6 @@ import joblib
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from xgboost import XGBClassifier
 import nltk
-from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer, WordNetLemmatizer
 from flask import Flask, render_template, url_for, request
 
@@ -15,8 +14,7 @@ vectorizer = joblib.load(open('model/vectorize.pkl', 'rb'))
 model = joblib.load(open('model/xgboost.pkl', 'rb'))
 
 def text_cleaning(text, remove_stopwords=True, stem_words=True, lemmatize_words=True):
-    stop_words = set(stopwords.words("english"))
-    stop_words.update({'im', 'yep', 'hey', 'heyy', 'heyyy'})
+    stop_words = {'a','about','above', 'after', 'again', 'against', 'ain', 'all', 'also', 'am', 'an', 'and', 'any', 'are', 'aren', "aren't", 'as', 'at', 'be', 'because', 'been', 'before', 'being', 'below', 'between', 'both', 'but', 'by', 'can', "can't", 'cannot', 'com', 'could', 'couldn', "couldn't", 'd', 'did', 'didn', "didn't", 'do', 'does', 'doesn', "doesn't", 'doing', 'don', "don't", 'down', 'during', 'each', 'else', 'ever', 'few', 'for', 'from', 'further', 'get', 'had', 'hadn', "hadn't", 'has', 'hasn', "hasn't", 'have', 'haven', "haven't", 'having', 'he', "he'd", "he'll", "he's", 'hence', 'her', 'here', "here's", 'hers', 'herself', 'him', 'himself', 'his', 'how', "how's", 'however', 'http', 'i', "i'd", "i'll", "i'm", "i've", 'if', 'in', 'into', 'is', 'isn', "isn't", 'it', "it's", 'its', 'itself', 'just', 'k', "let's", 'like', 'll', 'm', 'ma', 'me', 'mightn', "mightn't", 'more', 'most', 'mustn', "mustn't", 'my', 'myself', 'needn', "needn't", 'no', 'nor', 'not', 'now', 'o', 'of', 'off', 'on', 'once', 'only', 'or', 'other', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'over', 'own', 'r', 're', 's', 'same', 'shall', 'shan', "shan't", 'she', "she'd", "she'll", "she's", 'should', "should've", 'shouldn', "shouldn't", 'since', 'so', 'some', 'such', 't', 'than', 'that', "that'll", "that's", 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'there', "there's", 'therefore', 'these', 'they', "they'd", "they'll", "they're", "they've", 'this', 'those', 'through', 'to', 'too', 'under', 'until', 'up', 've', 'very', 'was', 'wasn', "wasn't", 'we', "we'd", "we'll", "we're", "we've", 'were', 'weren', "weren't", 'what', "what's", 'when', "when's", 'where', "where's", 'which', 'while', 'who', "who's", 'whom', 'why', "why's", 'will', 'with', 'won', "won't", 'would', 'wouldn', "wouldn't", 'www', 'y', 'you', "you'd", "you'll", "you're", "you've", 'your', 'yours', 'yourself', 'yourselves', 'im', 'yep', 'hey', 'heyy', 'heyyy'}
 
     text = re.sub(r"[^A-Za-z0-9]", " ", text)
     text = re.sub(r"\'s", " ", text)
