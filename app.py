@@ -1,9 +1,9 @@
-import joblib
-import numpy as np
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from xgboost import XGBClassifier
 from string import punctuation
 import re
+import numpy as np
+import joblib
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from xgboost import XGBClassifier
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer, WordNetLemmatizer
 from flask import Flask, render_template, url_for, request
@@ -59,10 +59,6 @@ def predict():
     vect = vectorizer.transform([clean_text])
     predict = model.predict(vect)
     return render_template('predict.html', prediction=predict)
-
-@app.route('/index')
-def return_page():
-    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run()
