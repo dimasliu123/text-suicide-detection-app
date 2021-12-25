@@ -6,7 +6,6 @@ from string import punctuation
 import re
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer, WordNetLemmatizer
-from wordcloud import STOPWORDS
 from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
@@ -16,7 +15,6 @@ model = joblib.load(open('model/xgboost.pkl', 'rb'))
 
 def text_cleaning(text, remove_stopwords=True, stem_words=True, lemmatize_words=True):
     stop_words = set(stopwords.words("english"))
-    stop_words.update(STOPWORDS)
     stop_words.update({'im', 'yep', 'hey', 'heyy', 'heyyy'})
 
     text = re.sub(r"[^A-Za-z0-9]", " ", text)
