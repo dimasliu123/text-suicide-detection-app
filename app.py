@@ -60,5 +60,9 @@ def predict():
     predict = model.predict(vect)
     return render_template('predict.html', prediction=predict)
 
+@app.route('/index')
+def return_page():
+    return render_template("index.html")
+
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
