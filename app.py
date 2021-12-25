@@ -9,6 +9,8 @@ from nltk.stem import SnowballStemmer, WordNetLemmatizer
 from flask import Flask, render_template, url_for, request
 nltk.download('stopwords')
 nltk.download('stem')
+nltk.download('wordnet')
+
 app = Flask(__name__)
 
 vectorizer = joblib.load(open('model/vectorize.pkl', 'rb'))
