@@ -188,7 +188,7 @@ jedi @ file:///opt/concourse/worker/volumes/live/12a2c347-a8e4-4b62-5b19-dcc92a2
 jieba==0.42.1
 Jinja2==3.0.1
 jmespath==0.10.0
-joblib @ file:///tmp/build/80754af9/joblib_1613502643832/work
+joblib==1.0.1
 json5==0.9.5
 jsonschema @ file:///tmp/build/80754af9/jsonschema_1602607155483/work
 jupyter==1.0.0
