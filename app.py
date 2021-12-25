@@ -6,6 +6,8 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from xgboost import XGBClassifier
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer, WordNetLemmatizer
+nltk.download('stopwords')
+nltk.download('punkt')
 from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
