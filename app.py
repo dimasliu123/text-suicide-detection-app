@@ -138,7 +138,7 @@ def predict():
         tokens = tokenizer.texts_to_sequences([clean_text])
         seq = tf.keras.preprocessing.sequence.pad_sequences(tokens, maxlen=100)
         prediction = model.predict(seq)
-        predict = tf.math.argmax(prediction, axis=-1)
+        predict = np.argmax(prediction, axis=-1)
         try :
             conn = sql.connect('user.db')
             curr = conn.cursor()
