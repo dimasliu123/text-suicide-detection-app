@@ -16,9 +16,6 @@ nltk.download('wordnet')
 
 app = Flask(__name__)
 
-# vectorizer = joblib.load(open('model/vectorize.pkl', 'rb'))
-# model = joblib.load(open('model/xgboost.pkl', 'rb'))
-
 class TransformerBlock(tf.keras.layers.Layer):
     def __init__(self, embed_dim, num_heads, ff_dim, rate=0.15, **kwargs):
         super(TransformerBlock, self).__init__()
@@ -127,36 +124,20 @@ def text_cleaning(text, remove_stopwords=True, stem_words=True, lemmatize_words=
 def index():
     return render_template("index.html")
 
-@app.route('/predict', methods=['POST', 'GET'])
+@app.route('/predict', methods=['POST'])
 def predict():
-    if request.method == 'POST':
-        date = datetime.utcnow()
-        to_predict_list = request.form.to_dict()
-        clean_text = text_cleaning(to_predict_list['text'])
-        # vect = vectorizer.transform([clean_text])
-        # predict = model.predict(vect)
-        tokens = tokenizer.texts_to_sequences([clean_text])
-        seq = tf.keras.preprocessing.sequence.pad_sequences(tokens, maxlen=100)
-        prediction = model.predict(seq)
-        predict = np.argmax(prediction, axis=-1)
-        try :
-            conn = sql.connect('user.db')
-            curr = conn.cursor()
-            curr.execute("INSERT INTO user (text, clean_text, ml_predictions, date_created) VALUES (?,?,?,?)",(to_predict_list['text'], clean_text, int(predict), date))
-            conn.commit()
-            print("Inserted Successfully")
-        except :
-            conn.rollback()
-            print("Can't insert")
-            print(date, to_predict_list['text'], clean_text, predict)
-        finally :
-            return render_template('predict.html', prediction=predict)
-            conn.close()
+    to_predict_list = request.form.to_dict()
+    clean_text = text_cleaning(to_predict_list['text'])
+    tokens = tokenizer.texts_to_sequences([clean_text])
+    seq = tf.keras.preprocessing.sequence.pad_sequences(tokens, maxlen=100)
+    prediction = model.predict(seq)
+    predict = np.argmax(prediction, axis=-1)
+    return render_template('predict.html', prediction=predict)
 
         
 @app.route('/index')
 def return_page():
-    return render_template("index.html")
+    return redirect("index.html")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
