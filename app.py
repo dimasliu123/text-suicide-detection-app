@@ -5,16 +5,14 @@ import re
 import numpy as np
 import joblib
 import tensorflow as tf
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from xgboost import XGBClassifier
 import nltk
 from nltk.stem import SnowballStemmer, WordNetLemmatizer
 from flask import Flask, render_template, url_for, request, redirect
 
-nltk.download('stopwords')
-nltk.download('omw-1.4')
-nltk.download('stem')
-nltk.download('wordnet')
+# nltk.download('stopwords')
+# nltk.download('omw-1.4')
+# nltk.download('stem')
+# nltk.download('wordnet')
 
 app = Flask(__name__)
 
@@ -140,7 +138,7 @@ def predict():
         tokens = tokenizer.texts_to_sequences([clean_text])
         seq = tf.keras.preprocessing.sequence.pad_sequences(tokens, maxlen=100)
         prediction = model.predict(seq)
-        predict = np.argmax(prediction, axis=-1)
+        predict = tf.math.argmax(prediction, axis=-1)
         try :
             conn = sql.connect('user.db')
             curr = conn.cursor()

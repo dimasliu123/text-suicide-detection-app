@@ -1,7 +1,5 @@
 flask 
-numpy
 joblib
-sklearn
 tensorflow==2.6.0
 gunicorn
 gevent
