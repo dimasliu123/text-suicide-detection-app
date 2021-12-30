@@ -1,6 +1,7 @@
 flask 
 numpy
 joblib
+nltk
 tensorflow-cpu==2.6.0
 gunicorn
 gevent
