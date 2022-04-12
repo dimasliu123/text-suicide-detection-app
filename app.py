@@ -131,8 +131,8 @@ def predict():
     tokens = tokenizer.texts_to_sequences([clean_text])
     seq = tf.keras.preprocessing.sequence.pad_sequences(tokens, maxlen=100)
     prediction = model.predict(seq)
-    predict = np.argmax(prediction, axis=-1)
-    return render_template('predict.html', prediction=predict)
+    proba, predict = np.round(np.max(prediction) * 100.0, 2), np.argmax(prediction, axis=-1)
+    return render_template('predict.html', predict=predict, proba=proba)
 
         
 @app.route('/index')
@@ -140,4 +140,4 @@ def return_page():
     return redirect("index.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

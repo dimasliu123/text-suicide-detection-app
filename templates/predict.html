@@ -41,10 +41,10 @@
         </div>
         <br><br><br><br><br><br><br>
         <div class="results">
-            {% if prediction == 1 %}
-            <h2 style="border : 5px solid crimson; align-items : center; text-align : center; color : whitesmoke; background-color: darkred; margin: 10px auto; padding: 15px; font-size : 30px;">SUICIDE DETECTED !</h2>
-            {% elif prediction == 0 %}
-            <h2 style="border : 5px solid blue; text-align :center; color : whitesmoke; background-color: midnightblue; margin : 10px auto; padding : 15px; font-size : 30px; ">NO SUICIDE DETECTED !</h2>
+            {% if predict == 1 %}
+            <h2 style="border : 5px solid crimson; align-items : center; text-align : center; color : whitesmoke; background-color: darkred; margin: 10px auto; padding: 15px; font-size : 30px;">SUICIDE DETECTED !<br>PROBABILITY : {{proba}} %</h2>
+            {% elif predict == 0 %}
+            <h2 style="border : 5px solid blue; text-align :center; color : whitesmoke; background-color: midnightblue; margin : 10px auto; padding : 15px; font-size : 30px; ">NO SUICIDE DETECTED !<br>PROBABILITY : {{proba}} %</h2>
         {% endif %}
         </div>
         <br>
