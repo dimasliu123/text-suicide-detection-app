@@ -99,7 +99,6 @@ def text_cleaning(text, remove_stopwords=True, stem_words=True, lemmatize_words=
     text = re.sub(r"\'ll", " will ", text)
     text = re.sub(r" c ", " can ", text)
     text = re.sub(r" e g ", " eg ", text)
-    text = re.sub(r'http\S+', ' link ', text)
     text = re.sub(r'\b\d+(?:\.\d+)?\s+', '', text)  # remove numbers
     text = re.sub(r" u ", " you ", text)
     text = text.lower()  # set in lowercase
