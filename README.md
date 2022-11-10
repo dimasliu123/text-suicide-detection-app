@@ -3,7 +3,7 @@
 <h2>Notes :</h2>
 <ul>This project was not intended to detect suicide for real - A lot of expertise on psychology and different types of data needs to be considered.</ul>
 <ul>Dataset was taken on <a href="https://www.kaggle.com/datasets/nikhileswarkomati/suicide-watch" target="_blank">https://www.kaggle.com/datasets/nikhileswarkomati/suicide-watch</a></ul>
-<ul>Application is deployed on <a href="https://text-suicide-detection.herokuapp.com/" target="_blank">Heroku</a>
+<ul>Application is deployed on <a href="https://text-suicide-detection.herokuapp.com/" target="_blank">text-suicide-detection.herokuapp.com</a>
 <h2>Preprocessing Pipeline :</h2>
 <ol>
 <li>Stopwords removal.</li>
